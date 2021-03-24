@@ -4,17 +4,19 @@ module.exports = {
   head: [
     ['link', {rel: 'icon', href: '/logo.ico'}]
   ],
-  base: '/bar/',
+  base: '/Interview-me/',
   themeConfig: {
     nav: [
       { text: '主页', link: '/'},
-      { text: '测试', link: '/test/'},
+      { text: '前端', items: [
+        { text: 'HTML', link: '/web/html/'},
+        { text: 'CSS', link: '/web/css/'},
+        { text: 'Javascript', link: '/web/javascript/'},
+      ]},
+      { text: '面试问题', link: '/interview/'},
+      { text: '随笔笔记', link: '/note/'},
       { text: '博客', link: 'https://www.wray.top'}
     ],
-    sidebar: {
-      '/': [
-        '/'
-      ]
-    }
+    sidebar: 'auto'
   }
 }
