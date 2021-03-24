@@ -1,0 +1,16 @@
+{
+  "name": "interview-me",
+  "version": "1.0.0",
+  "description": "liuwray",
+  "main": "index.js",
+  "author": "liuzhenhua <liuzhenhua1990@icloud.com>",
+  "license": "MIT",
+  "scripts": {
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
+  },
+  "dependencies": {
+    "vuepress": "^1.8.2",
+    "yarn": "^1.22.10"
+  }
+}
