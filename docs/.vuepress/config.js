@@ -4,7 +4,7 @@ module.exports = {
   head: [
     ['link', {rel: 'icon', href: '/logo.ico'}]
   ],
-  base: '/bar/',
+  base: '/Interview-me/',
   themeConfig: {
     nav: [
       { text: '主页', link: '/'},
