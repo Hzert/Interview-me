@@ -10,7 +10,6 @@
 ## 深拷贝和浅拷贝的实现原理，以及为什么要深拷贝?
 `B复制A，A变，B变，浅拷贝。`
 `B复制A，A变，B不变，深拷贝`
-基本数据类型：string,boolean,null,number,undefined,symbol(ES6),BigInt(ES10)
 引用数据类型：object，list，function
 
 基本数据类型`名称和值`都存储在`栈内存`当中都有一个`单独的内存空间`，当进行赋值时会开辟单独的内存空间
@@ -115,3 +114,6 @@ Function.prototype.bind = function bind(context, ...arg) {
   }
   console.log(new Date, i);
 ```
+
+
+
