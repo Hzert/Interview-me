@@ -170,6 +170,105 @@
    const res = Array.from(new Set(arr));
    ```
 
+   方法二：两层for循环+splice
+
+   ```javascript
+   const arr = [1,1,'1',17,true,true,false,false,'true','a',{},{}];
+   // => [1,'1',17,true,false,'true','a',{},{}]
+   
+   const unique = arr => {
+     let len = arr.length;
+     for(let i = 0; i < len; i++) {
+       for(let j = i + 1; j < len; j++) {
+         if (arr[i] === arr[j]){
+           arr.splice(j, 1);
+           len--;
+           j--;
+         }
+       }
+     }
+     return arr;
+   }
+   ```
+
+   方法三：利用indexOf
+
+   ```javascript
+   const arr = [1,1,'1',17,true,true,false,false,'true','a',{},{}];
+   // => [1,'1',17,true,false,'true','a',{},{}]
+   
+   const unique2 = arr => {
+     const res = [];
+     for(let i = 0; i < arr.length; i++) {
+       if (res.indexOf(arr[i]) === -1) {
+         res.push(arr[i]);
+       }
+     }
+     return res;
+   } 
+   ```
+
+   方法四： 利用includes
+
+   ```javascript
+   const arr = [1,1,'1',17,true,true,false,false,'true','a',{},{}];
+   // => [1,'1',17,true,false,'true','a',{},{}]
+   const unique3 = arr => {
+     const res = [];
+     for (let i = 0; i < arr.length; i++) {
+       if(!res.includes(arr[i])){
+         res.push(arr[i]);
+       }
+     }
+     return res;
+   }
+   ```
+
+   方法五：利用filter
+
+   ```javascript
+   const arr = [1,1,'1',17,true,true,false,false,'true','a',{},{}];
+   // => [1,'1',17,true,false,'true','a',{},{}]
+   const unique4 = arr => {
+     return arr.filter((item, index) => {
+       return arr.indexOf(item) === index;
+     })
+   }
+   ```
+
+   方法六：利用Map
+
+   ```javascript
+   const arr = [1,1,'1',17,true,true,false,false,'true','a',{},{}];
+   // => [1,'1',17,true,false,'true','a',{},{}]
+   const unique5 = arr => {
+     const map = new Map();
+     const res = [];
+     for(let i = 0; i < arr.length; i++) {
+       if (!map.has(arr[i]){
+       	map.set(arr[i], true);
+       	res.push(arr[i]);
+       }
+     }
+   	return res;
+   }
+   ```
+
+   
+
+   数组对象去重： 对象访问属性的方法
+
+   ```javascript
+   const filterArray = arr => {
+     const obj = {};
+     return arr.reduce((item, next) => {
+       obj[next.name] ? '' : obj[next.name] = true && item.push(next);
+       // name是去重对象里的属性
+       return item;
+     },[]);
+   }
+   ```
+
    
 
 6. 手写promise.all 和 promise.race
@@ -177,6 +276,55 @@
 7. 模拟实现new
 
 8. 实现call/apply/bind
+
+   ```javascript
+   Funtion.prototype.call = function(context = window, ...args) {
+     if (typeof this !== 'function') {
+       throw new TypeError('Type Error');
+     }
+     const fn = Symbol('fn');
+     context[fn] = this;
+     
+     const res = context[fn](...args);
+     delete context[fn];
+     return res;
+   }
+   ```
+
+   
+
+   ```javascript
+   Function.prototype.apply = function(context = window, args) {
+     if (typeof this !== 'function') {
+       throw new TypeError('Type Error');
+     }
+     const fn = Symbol('fn');
+     context[fn] = this;
+     
+     const res = context[fn](...args);
+     delete context[fn];
+     return res;
+   }
+   ```
+
+   ```javascript
+   Function.prototype.bind = function(context = window, ...args) {
+     if (typeof this !== 'function') {
+       throw new TypeError('Type Error');
+     }
+     // 保存this的值
+     var self = this;
+     return function F(){
+       // 考虑new的情况
+       if(this instanceof F) {
+         return new self(...args, ...arguments)
+       }
+       return self.apply(context, [...args, ...arguments])
+     }
+   }
+   ```
+
+   
 
 9. 模拟Object.create()的实现
 
